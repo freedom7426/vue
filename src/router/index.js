@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
+import store from '../store'
 Vue.use(VueRouter)
 
 
@@ -55,7 +55,7 @@ const router = new VueRouter({
 router.beforeEach((to,from, next) => {
     if(to.meta.auto){
       //是否登录
-      if(window.isLogin){
+      if(store.isLogin){
         next()
       }else{
         next('/login?redirect='+to.fullPath)
