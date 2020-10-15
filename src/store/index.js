@@ -1,34 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import user from './user'
+import persist from './plugins/persist'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    isLogin: false
-  },
-  mutations: {
-    login(state){
-      state.isLogin = true
-    },
-    logout(state){
-      state.isLogin = false
-    }
-  },
-  actions: {
-    login({ commit },username){
-      return new Promise((resolve,reject) => {
-        setTimeout(() => {
-          if(username === 'admin'){
-            commit('login')
-            resolve()
-          }else{
-            reject()
-          }
-        },1000)
-      })
-    }
-  },
+ 
   modules: {
-  }
+    user,
+  },
+  strict: true,  //打开严格模式，防止用户手动修改状态
+  plugins: [persist]
 })

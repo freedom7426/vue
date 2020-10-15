@@ -3,12 +3,27 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+
+      <p v-if="isLogin">{{ welcome }} <button>注销</button></p>
     </div>
       <keep-alive include="about">
         <router-view></router-view>
      </keep-alive>
+
+
   </div>
 </template>
+<script>
+import { mapState, mapGetters} from 'vuex'
+
+export default {
+  name: 'app',
+  computed:{
+    ...mapState('user', ['isLogin']),
+    ...mapGetters('user', ['welcome']),
+  }
+}
+</script>
 
 <style>
 #app {

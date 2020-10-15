@@ -55,7 +55,7 @@ const router = new VueRouter({
 router.beforeEach((to,from, next) => {
     if(to.meta.auto){
       //是否登录
-      if(store.isLogin){
+      if(store.state.user.isLogin){
         next()
       }else{
         next('/login?redirect='+to.fullPath)
